@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CA01 - Santa Clara</title>	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="outer">
+		<canvas id="canvas"></canvas>
+		<div id="dcArea" style="display: none;"></div>
+		<div id="dcArea" ></div>
+	</div>
+
+
+	<div id="info"></div>
+
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/paper.js"></script>
+
+	<script type="text/javascript" src="js/json.js"></script>
+	<script type="text/javascript" src="js/DrawCA.js"></script>
+	<script type="text/javascript" src="js/getData.js"></script>
+	<script type="text/javascript" src="js/Cabinet.js"></script>
+	<script type="text/javascript">
+		window.onload = function () {
+			paper.setup(document.getElementById("canvas"));
+			var datacenter = new DrawCA();
+			paper.view.draw();
+			fetchNetSuiteData();
+			
+		};
+	</script>
+</body>
+</html>

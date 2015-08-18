@@ -1,0 +1,99 @@
+//secaucus stuff
+// DrawDC.prototype.getDataSec = function() {
+// 	var self = this;
+// 	$.ajax({
+// 		method: "GET",
+// 		url: "secaucus.json",
+// 		async: false,
+// 		beforeSend: function (xhr) {
+// 			xhr.overrideMimeType("application/json");
+// 		}
+// 	}).done(function (data) {
+// 		self.drawPerimeter(data.perimeter);
+// 		self.drawCabs(data.cabWidth, data.cabHeight, data.cabGroups);
+// 	})
+// };
+
+// DrawDC.prototype.drawPerimeterSec = function(data) {
+// 	var path = new paper.Path();
+// 	path.strokeColor = "black";
+// 	for (var i = 0; i < data.length; i++) {
+// 		var x = data[i][0] * 2 * this.scale;
+// 		var y = data[i][1] * 2 * this.scale;
+// 		path.add([x, y]);
+// 	}
+// 	x = data[0][0] * 2 * this.scale;
+// 	y = data[0][1] * 2 * this.scale;	
+// 	path.add([x, y]);
+// };
+
+// DrawDC.prototype.drawCabsSec = function(width, height, grps) {
+// 	width = width * 2 * this.scale;
+// 	height = height * 2 * this.scale;
+
+// 	for (var grp = 0; grp < grps.length; grp++) {
+// 		var cabs = grps[grp];
+// 		for (var cab = 0; cab < cabs.cnt - 1; cab++) {
+// 			this.createCab(width, height, cabs, cab, true, false);
+// 		}
+// 		this.createCab(width, height, cabs, cabs.cnt - 1, false, false);
+		
+// 		if (cabs.sets === 2) {
+// 			for (var cab = 0; cab < cabs.cnt - 1; cab++) {
+// 				this.createCab(width, height, cabs, cab, true, true);
+// 			}	
+// 			this.createCab(width, height, cabs, cabs.cnt - 1, false, true);
+// 		}
+// 	}
+// };
+
+// DrawDC.prototype.createCabSec = function(width, height, cabs, cab, border, inSet) {
+// 	var self = this;
+// 	var rand = Math.floor(Math.random() * 3);
+// 	var div = document.createElement("div"),
+// 		x = cabs.x * 2 * this.scale,
+// 		y = cabs.y * 2 * this.scale,
+// 		spacing = cabs.spacing * 2 * this.scale;
+
+// 	div.classList.add("cab");
+// 	if (border) {
+// 		div.style.borderBottom = "none";	
+// 	}
+// 	// div.style.border = "none";
+// 	div.style.width = width + "px";
+// 	div.style.height = height + "px";
+	
+// 	div.style.top = y + (height * cab) + "px";
+// 	if (inSet) {
+// 		div.style.left = x + width + spacing + "px";	
+// 	} else {
+// 		div.style.left = x + "px";
+// 	}
+
+// 	div.id = "cab" + this.cabCount;
+// 	div.style.backgroundColor = this.colors[rand];
+	
+// 	// div.innerHTML = this.cabCount;
+
+// 	this.cabCount++;
+// 	this.dcArea.appendChild(div);
+// 	$(div).hover(function () {
+// 		//in
+// 		div.style.backgroundColor = "#ECF0F1";
+// 		self.infoArea.innerHTML = div.id;
+// 	}, function () {
+// 		//out
+// 		div.style.backgroundColor = self.colors[rand];
+// 		self.infoArea.innerHTML = "";
+// 	});
+// };
+
+// DrawDC.prototype.removeCabSec = function() {
+// 	var cab215 = document.getElementById("cab215");
+// 	document.getElementById("cab214").style.borderBottom = "1px solid black";
+// 	var cab301 = document.getElementById("cab301");
+// 	document.getElementById("cab300").style.borderBottom = "1px solid black";
+
+// 	this.dcArea.removeChild(cab215);
+// 	this.dcArea.removeChild(cab301);
+// };

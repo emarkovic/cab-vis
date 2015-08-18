@@ -1,0 +1,45 @@
+.cab {
+  border: 1px solid black;
+  position: absolute; }
+
+#outer {
+  position: absolute; }
+  #outer #canvas {
+    position: absolute;
+    height: 2000px;
+    width: 2000px; }
+  #outer #dcArea {
+    position: relative; }
+  #outer #loading {
+    height: 100px;
+    width: 100px;
+    margin-left: 443.5px;
+    margin-top: -25px; }
+
+#info {
+  position: fixed;
+  right: 100px;
+  top: 100px;
+  width: 300px;
+  height: 100px;
+  border: 2px solid black;
+  padding: 5px;
+  text-align: center; }
+
+#test {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 10.5px;
+  height: 21px;
+  border: 1px solid black; }
+
+#test1 {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  width: 10.5px;
+  height: 21px;
+  border: 1px solid black; }
+
+/*# sourceMappingURL=style.css.map */
