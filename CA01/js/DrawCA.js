@@ -1,6 +1,5 @@
 function DrawCA() {
 	this.dcArea = document.getElementById("dcArea");
-	this.infoArea = document.getElementById("info");
 	
 	this.scale = window.settings.scale * 2;
 
@@ -8,6 +7,8 @@ function DrawCA() {
 	this.drawPods();
 	this.drawCages();
 }
+
+DrawCA.template = _.template($(document.getElementById("template-cab")).html());
 
 DrawCA.prototype.drawPerimeter = function() {
 	var path = new paper.Path();
@@ -219,15 +220,17 @@ DrawCA.prototype.fillData = function(info, cabData, i, cabNum, row2, last) {
 };
 
 DrawCA.prototype.createCab = function(cabData, dir) {
-	var div = document.createElement("div");
-	div.id = cabData.id;
+	var cabInfo = {
+		"id" : cabData.id,
+		"top" : cabData.top + "px",
+		"left" : cabData.left + "px",
+		"width" : cabData.width + "px",
+		"height" : cabData.height + "px"
+	}
+	var cabHTML = DrawCA.template(cabInfo);
+	$(this.dcArea).append(cabHTML);
+	var div = document.getElementById(cabData.id);
 	div.classList.add("cab");
-	div.style.position = "absolute";
-	div.style.top = cabData.top + "px";
-	div.style.left = cabData.left + "px";
-	div.style.width = cabData.width + "px";
-	div.style.height = cabData.height + "px";
-	this.dcArea.appendChild(div);
 };
 
 

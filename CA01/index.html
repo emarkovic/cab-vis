@@ -12,12 +12,15 @@
 	<div id="outer">
 		<canvas id="canvas"></canvas>
 		<div id="dcArea" style="display: none;"></div>
-		<div id="dcArea" ></div>
+		<img src="img/loading.gif" id="loading">
 	</div>
+	
+	<script type="text/template" id="template-cab" >
+		<div id="<%- id %>" style="top : <%- top %>; left : <%- left %>; width : <%- width %>; height: <%- height %>;" data-toggle="popover" data-placement="bottom" data-content="" data-trigger="hover" data-original-title="" data-html=""></div>	
+	</script>
+	
 
-
-	<div id="info"></div>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -28,12 +31,11 @@
 	<script type="text/javascript" src="js/getData.js"></script>
 	<script type="text/javascript" src="js/Cabinet.js"></script>
 	<script type="text/javascript">
-		window.onload = function () {
+		window.onload = function () {			
 			paper.setup(document.getElementById("canvas"));
 			var datacenter = new DrawCA();
 			paper.view.draw();
 			fetchNetSuiteData();
-			
 		};
 	</script>
 </body>
