@@ -10,11 +10,6 @@
     width: 2000px; }
   #outer #dcArea {
     position: relative; }
-  #outer #loading {
-    height: 100px;
-    width: 100px;
-    margin-left: 443.5px;
-    margin-top: -25px; }
 
 #info {
   position: fixed;

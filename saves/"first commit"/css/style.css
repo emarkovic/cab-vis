@@ -26,4 +26,20 @@
   padding: 5px;
   text-align: center; }
 
+#test {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 10.5px;
+  height: 21px;
+  border: 1px solid black; }
+
+#test1 {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  width: 10.5px;
+  height: 21px;
+  border: 1px solid black; }
+
 /*# sourceMappingURL=style.css.map */

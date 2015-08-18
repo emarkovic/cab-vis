@@ -7,7 +7,7 @@ var colors = {
 };
 
 var settings = {
-	"scale" : 6.25
+	"scale" : 5.25
 };
 
 var data = {
@@ -388,6 +388,7 @@ var data = {
 
 	"delete" : [
 		"P23-CAB17",
+		"P19-CAB11",
 		"P20-CAB17",
 		"P20-CAB16",
 		"P20-CAB04",
