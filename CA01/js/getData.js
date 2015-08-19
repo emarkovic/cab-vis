@@ -9,22 +9,28 @@ function fetchNetSuiteData() {
 }
 
 function processData() {
-	var data = JSON.parse(this.responseText);
-	var cust = data["cust"];
-	var noCust = data["noCust"];
+	var datas = JSON.parse(this.responseText);
+	var cust = datas["cust"];
+	var noCust = datas["noCust"];
 	
 
 	for (var i = 0; i < cust.length; i++) {
-		var data = cust[i];
-		if (document.getElementById(data["pod"] + "-" + data["cab"])) {
-			cabinets[data["name"]] = new Cabinet(data);	
+		var record = cust[i];
+		// if (record.pod === "P10") {
+		// 	console.log(record);
+		// }
+		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
+			cabinets[record["name"]] = new Cabinet(record);	
 		}	
 	}
 
 	for (var i = 0; i < noCust.length; i++) {
-		var data = noCust[i];
-		if (document.getElementById(data["pod"] + "-" + data["cab"])) {
-			cabinets[data["name"]] = new Cabinet(data);	
+		var record = noCust[i];
+		// if (record.pod === "P10") {
+		// 	console.log(record);
+		// }
+		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
+			cabinets[record["name"]] = new Cabinet(record);	
 		}	
 	}
 

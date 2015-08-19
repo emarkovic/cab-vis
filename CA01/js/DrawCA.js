@@ -44,66 +44,32 @@ DrawCA.prototype.drawPods = function() {
 	for (var i = 0; i < data.pods.length; i++) {
 		var info = data.pods[i];
 		if (info.coolIsle) {
-			var isleData = this.getIsleData(info);
-			this.drawCoolIsle(isleData);
+			this.drawCoolIsle(info);
 		}
-		this.drawCabs(info);
+
+		if (info.pod === "P10") {
+			//this.drawP10(info);
+		} else {
+			this.drawCabs(info);
+		}
+
 		if (info.missing) {
 			this.deleteCabs(info);	
-		}	
+		}
 	}
 };
 
-DrawCA.prototype.getIsleData = function(info) {
-	var isleData = {};
-	isleData["containment"] = info.containment;
-	if (info.dir === "x") {
-		isleData["dir"] = "x";
-		if (info.cabPos === "LR" || info.cabPos === "UR") {
-			isleData["left"] = (info.x - data.widthX * (info.count - 1))* this.scale;
-		} else {
-			isleData["left"] = info.x * this.scale;
-		}
-
-		if (info.cabPos === "LR" || info.cabPos === "LL") {
-			isleData["top"] = (info.y - info.space) * this.scale;
-		} else {
-			isleData["top"] = (info.y + data.heightX) * this.scale;
-		}
-
-		isleData["width"] = data.widthX * info.count * this.scale + 2;
-		isleData["height"] =  info.space * this.scale;
-	} else {
-		isleData["dir"] = "y";
-		if (info.cabPos === "LL" || info.cabPos === "UL") {
-			isleData["left"] = (info.x + data.widthY) * this.scale + 1;
-		} else {
-			isleData["left"] = (info.x - info.space) * this.scale + 1;
-		}
-
-		if (info.cabPos === "LL" || info.cabPos === "LR") {
-			isleData["top"] = (info.y - data.heightY * (info.count - 1)) * this.scale;
-		} else {
-			isleData["top"] = info.y * this.scale;
-		}
-
-		isleData["width"] = info.space * this.scale;
-		isleData["height"] = data.heightY * info.count * this.scale;
-	}
-
-	return isleData;
-};
-
-DrawCA.prototype.drawCoolIsle = function(isleData) {
+DrawCA.prototype.drawCoolIsle = function(info) {
 	var div = document.createElement("div");
 	div.style.position = "absolute";
-	div.style.top = isleData.top + "px";
-	div.style.left = isleData.left + "px";
-	div.style.width = isleData.width + "px";
-	div.style.height = isleData.height + "px";
+	div.style.top = this.getIsleTop(info) + "px";
+	div.style.left = this.getIsleLeft(info) + "px";
+	div.style.width = this.getIsleWidth(info) + "px";
+	div.style.height = this.getIsleHeight(info) + "px";
 	div.style.backgroundColor = "#19B5FE";
-	if (isleData.containment) {
-		if (isleData === "x") {
+
+	if (info.containment) {
+		if (info.dir === "x") {
 			div.style.borderLeft = "1px solid black";
 			div.style.borderRight = "1px solid black";
 		} else {
@@ -114,20 +80,248 @@ DrawCA.prototype.drawCoolIsle = function(isleData) {
 	this.dcArea.appendChild(div);
 };
 
+DrawCA.prototype.getIsleLeft = function(info) {
+	if (info.cabPos === "LR" || info.cabPos === "UR") {
+		if (info.dir === "x") {
+			return (info.x - data.widthX * (info.count - 1))* this.scale;
+		} else { 
+			return (info.x - info.space) * this.scale;
+		}
+	} else { 	//LL and UL
+		if (info.dir === "x") {
+			return info.x * this.scale;
+		} else {
+			return (info.x + data.widthY) * this.scale;
+		}
+	}
+};
+
+DrawCA.prototype.getIsleTop = function(info) {
+	if (info.cabPos === "LR" || info.cabPos === "LL") { 
+		if (info.dir === "x") {
+			return (info.y - info.space) * this.scale;
+		} else {	
+			return (info.y - data.heightY * (info.count - 1)) * this.scale;
+		}
+	} else { 	//cabPos UR and UL
+		if (info.dir === "x") {
+			return (info.y + data.heightX) * this.scale;
+		} else {
+			return info.y * this.scale;
+		}
+	}	
+};
+
+DrawCA.prototype.getIsleWidth = function(info) {
+	if (info.dir === "x") {
+		return data.widthX * info.count * this.scale;
+	} else {
+		return info.space * this.scale;
+	}
+};
+
+DrawCA.prototype.getIsleHeight = function(info) {
+	if (info.dir === "x") {
+		return info.space * this.scale;
+	} else {
+		return data.heightY * info.count * this.scale;
+	}
+};
+
 DrawCA.prototype.drawCabs = function(info) {
 	var cabData = {},
 		cabNum = 1;
-	//row #1
 	for (var i = 0; i < info.count; i++) {
-		this.fillData(info, cabData, i, cabNum, false);
-		this.createCab(cabData, info.dir);
+		this.createCab(info, cabNum, i, false);
 		cabNum++;
 	}
 	if (info.rows === 2) {
 		for (var i = 0; i < info.count; i++) {
-			this.fillData(info, cabData, i, cabNum, true);
-			this.createCab(cabData, info.dir);
+			this.createCab(info, cabNum, i, true);
 			cabNum++;
+		}
+	}
+};
+
+DrawCA.prototype.createCab = function(info, cabnum, i, row2) {
+	var id = this.getCabId(info, cabnum);
+	var cabInfo = {
+		"id" : id,
+		"top" : this.getCabTop(info, row2, i) + "px",
+		"left" : this.getCabLeft(info, row2, i) + "px",
+		"width" : this.getCabWidth(info) + "px",
+		"height" : this.getCabHeight(info) + "px"
+	}
+	$(this.dcArea).append(DrawCA.template(cabInfo));
+	document.getElementById(id).classList.add("cab");
+};
+
+// DrawCA.prototype.drawP10 = function(info) {
+// 	var id, idA, idB, idC, top, left, height;
+// 	for (var i = 1; i <= 42; i++) {
+// 		id = "CA01:F01:DH0001::" + this.getCabId(info, i);
+// 		idA = id + "A";
+// 		idB = id + "B";
+// 		idC = id + "C";
+// 		top = this.getCabTop(info, false, i);
+// 		left = this.getCabLeft(info, false, i);
+
+// 		if (i === 21) {	//single
+// 			var cabInfo = {
+// 				"id" : id,
+// 				"top" : top + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : data.heightX + "px"
+// 			}
+// 			$(this.dcArea).append(DrawCA.template(cabInfo));
+// 			document.getElementById(id).classList.add("cab");
+// 		} else if (i < 21) { //double
+// 			height = data.heightX / 2;
+
+// 			var cabInfoA = {
+// 				"id" : idA,
+// 				"top" : top + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : height + "px"
+// 			}
+// 			$(this.dcArea).append(DrawCA.template(cabInfoA));
+// 			document.getElementById(idA).classList.add("cab");
+
+// 			var cabInfoB = {
+// 				"id" : idB,
+// 				"top" : top + height + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : height + "px"
+// 			}
+// 			$(this.dcArea).append(DrawCA.template(cabInfoB));
+// 			document.getElementById(idB).classList.add("cab");
+// 		} else { //22 - 42 -> triple!
+// 			height = data.heightX / 3;
+// 			top = this.getCabTop(info, true, i);
+// 			left = this.getCabLeft(info, true, i);
+
+// 			var cabInfoA = {
+// 				"id" : idA,
+// 				"top" : top + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : height + "px"
+// 			}
+// 			$(this.dcArea).append(DrawCA.template(cabInfoA));
+// 			document.getElementById(idA).classList.add("cab");
+
+// 			var cabInfoB = {
+// 				"id" : idB,
+// 				"top" : top + height + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : height + "px"
+// 			}
+// 			$(this.dcArea).append(DrawCA.template(cabInfoB));
+// 			document.getElementById(idB).classList.add("cab");
+
+// 			var cabInfoC = {
+// 				"id" : idC,
+// 				"top" : top + (2 * height) + "px",
+// 				"left" : left + "px",
+// 				"width" : data.widthX + "px",
+// 				"height" : height + "px"
+// 			}	
+// 			$(this.dcArea).append(DrawCA.template(cabInfoC));
+// 			document.getElementById(idC).classList.add("cab");		
+// 		}
+// 	}
+// };
+
+DrawCA.prototype.getCabId = function(info, cabNum) {
+	if (cabNum < 10) {
+		return info.pod + "-CAB0" + cabNum;
+	} else {
+		return info.pod + "-CAB" + cabNum;
+	}
+};
+
+DrawCA.prototype.getCabWidth = function(info) {
+	if (info.dir === "x") {
+		return data.widthX * this.scale;
+	} else {
+		return data.widthY * this.scale;
+	}
+};
+
+DrawCA.prototype.getCabHeight = function(info) {
+	if (info.dir === "x") {
+		return data.heightX * this.scale;
+	} else {
+		return data.heightY * this.scale;
+	}
+};
+
+DrawCA.prototype.getCabLeft = function(info, row2, i) {
+	var startX;
+	if (info.dir === "x") {
+		if (row2) {
+			if (info.cabPos === "LR" || info.cabPos === "UR") {
+				startX = info.x - data.widthX * (info.count - 1);
+				return (startX + (data.widthX * i)) * this.scale;
+			} else {
+				startX = info.x + data.widthX * (info.count - 1);
+				return (startX - (data.widthX * i)) * this.scale;
+			}
+		} else {
+			if (info.cabPos === "LR" || info.cabPos === "UR") {
+				return (info.x - (data.widthX * i)) * this.scale;	
+				
+			} else {
+				return (info.x + (data.widthX * i)) * this.scale;
+			}
+		}
+	} else {
+		if (row2) {
+			if (info.cabPos === "LL" || info.cabPos === "UL") {
+				startX = info.x + data.widthY + info.space;
+			} else {
+				startX = info.x - data.widthY - info.space;
+			}
+			return startX * this.scale;			
+		} else {
+			return info.x * this.scale;
+		}
+	}
+};
+
+DrawCA.prototype.getCabTop = function(info, row2, i) {
+	var startY;
+	if (info.dir === "x") {
+		if (row2) {
+			if (info.cabPos === "LR" || info.cabPos === "LL") {
+				startY = info.y - info.space - data.heightX;
+			} else {
+				startY = info.y + info.space + data.heightX;
+			}
+
+			return startY * this.scale;
+		} else {
+			return info.y * this.scale;
+		}
+	} else {
+		if (row2) {
+			if (info.cabPos === "LL" || info.cabPos === "LR") {
+				startY = info.y - (data.heightY * (info.count - 1));
+				return (startY + (data.heightY * i)) * this.scale;
+			} else {
+				startY = info.y + (data.heightY * (info.count - 1));
+				return (startY - (data.heightY * i)) * this.scale;
+			}
+		} else {
+			if (info.cabPos === "LL" || info.cabPos === "LR") {
+				return (info.y - (data.heightY * i)) * this.scale;	
+			} else {
+				return (info.y + (data.heightY * i)) * this.scale;
+			}
 		}
 	}
 };
@@ -142,95 +336,6 @@ DrawCA.prototype.deleteCabs = function(info) {
 			this.dcArea.removeChild(document.getElementById(info.pod + "-CAB" + cab));
 		}
 	}
-};
-
-DrawCA.prototype.fillData = function(info, cabData, i, cabNum, row2, last) {
-
-	var startX, startY;
-
-	if (cabNum < 10) {
-		cabData["id"] = info.pod + "-CAB0" + cabNum;
-	} else {
-		cabData["id"] = info.pod + "-CAB" + cabNum;
-	}
-	cabData["last"] = last;
-
-	if (info.dir === "x") {
-		cabData["width"] = data.widthX * this.scale;
-		cabData["height"] = data.heightX * this.scale;
-
-		if (row2) {
-			if (info.cabPos === "LR" || info.cabPos === "UR") {
-				startX = info.x - data.widthX * (info.count - 1);
-			} else {
-				startX = info.x + data.widthX * (info.count - 1);
-			}
-
-			if (info.cabPos === "LR" || info.cabPos === "LL") {
-				startY = info.y - info.space - data.heightX;
-			} else {
-				startY = info.y + info.space + data.heightX;
-			}
-
-			cabData["top"] = startY * this.scale;
-
-			if (info.cabPos === "LR" || info.cabPos === "UR") {
-				cabData["left"] = (startX + (data.widthX * i)) * this.scale;
-			} else {
-				cabData["left"] = (startX - (data.widthX * i)) * this.scale;
-			}
-		} else {
-			cabData["top"] = info.y * this.scale;
-
-			if (info.cabPos === "LR" || info.cabPos === "UR") {
-				cabData["left"] = (info.x - (data.widthX * i)) * this.scale;	
-				
-			} else {
-				cabData["left"] = (info.x + (data.widthX * i)) * this.scale;
-			}			
-		}
-	} else { // y dir
-		cabData["width"] = data.widthY * this.scale;
-		cabData["height"] = data.heightY * this.scale;
-
-		if (row2) {
-			if (info.cabPos === "LL" || info.cabPos === "UL") {
-				startX = info.x + data.widthY + info.space;
-			} else {
-				startX = info.x - data.widthY - info.space;
-			}
-			cabData["left"] = startX * this.scale;
-
-			if (info.cabPos === "LL" || info.cabPos === "LR") {
-				startY = info.y - (data.heightY * (info.count - 1));
-				cabData["top"] = (startY + (data.heightY * i)) * this.scale;
-			} else {
-				startY = info.y + (data.heightY * (info.count - 1));
-				cabData["top"] = (startY - (data.heightY * i)) * this.scale;
-			}
-		} else {
-			cabData["left"] = info.x * this.scale;
-			if (info.cabPos === "LL" || info.cabPos === "LR") {
-				cabData["top"] = (info.y - (data.heightY * i)) * this.scale;	
-			} else {
-				cabData["top"] = (info.y + (data.heightY * i)) * this.scale;
-			}
-		}
-	}
-};
-
-DrawCA.prototype.createCab = function(cabData, dir) {
-	var cabInfo = {
-		"id" : cabData.id,
-		"top" : cabData.top + "px",
-		"left" : cabData.left + "px",
-		"width" : cabData.width + "px",
-		"height" : cabData.height + "px"
-	}
-	var cabHTML = DrawCA.template(cabInfo);
-	$(this.dcArea).append(cabHTML);
-	var div = document.getElementById(cabData.id);
-	div.classList.add("cab");
 };
 
 
