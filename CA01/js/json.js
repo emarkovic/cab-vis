@@ -1,3 +1,10 @@
+/**
+ * Ena Markovic, vXchnge
+ */
+
+/**
+ * Biased on cabinet availability, cabinet color will be different 
+ */
 var colors = {
 		"Assigned" : "#BDC3C7",
 		"Available" : "#87D37C",
@@ -6,10 +13,16 @@ var colors = {
 		"Lost" : "#6C7A89"	
 };
 
+/**
+ * Settings for DrawCA.js.
+ */
 var settings = {
 	"scale" : 6.25
 };
 
+/**
+ * Data for CA01 - Santa Clara data center.
+ */
 var data = {
 	"perimeter" : [
 		[0, 0],
