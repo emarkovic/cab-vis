@@ -48,7 +48,7 @@ DrawCA.prototype.drawPods = function() {
 		}
 
 		if (info.pod === "P10") {
-			// this.drawP10(info);
+			this.drawP10(info);
 		} else {
 			this.drawCabs(info);
 		}
@@ -129,54 +129,84 @@ DrawCA.prototype.getIsleHeight = function(info) {
 };
 
 DrawCA.prototype.drawCabs = function(info) {
-	var cabData = {},
-		cabNum = 1;
+	var cabNum = 1;
 	for (var i = 0; i < info.count; i++) {
-		this.createCab(info, cabNum, i, false);
+		this.createCab(
+			this.getCabId(info, cabNum),
+			this.getCabTop(info, false, i),
+			this.getCabLeft(info, false, i),
+			this.getCabWidth(info),
+			this.getCabHeight(info)
+		);
 		cabNum++;
 	}
 	if (info.rows === 2) {
 		for (var i = 0; i < info.count; i++) {
-			this.createCab(info, cabNum, i, true);
+			this.createCab(
+				this.getCabId(info, cabNum),
+				this.getCabTop(info, true, i),
+				this.getCabLeft(info, true, i),
+				this.getCabWidth(info),
+				this.getCabHeight(info)
+			);			
 			cabNum++;
 		}
 	}
 };
 
-DrawCA.prototype.createCab = function(info, cabnum, i, row2) {
-	var id = this.getCabId(info, cabnum);
-	var cabInfo = {
+DrawCA.prototype.createCab = function(id, top, left, width, height) {
+	$(this.dcArea).append(DrawCA.template({
 		"id" : id,
-		"top" : this.getCabTop(info, row2, i) + "px",
-		"left" : this.getCabLeft(info, row2, i) + "px",
-		"width" : this.getCabWidth(info) + "px",
-		"height" : this.getCabHeight(info) + "px"
-	}
-	$(this.dcArea).append(DrawCA.template(cabInfo));
+		"top" : top + "px",
+		"left" : left + "px",
+		"width" : width + "px",
+		"height" : height + "px"
+	}));
 	document.getElementById(id).classList.add("cab");
 };
 
-// DrawCA.prototype.drawP10 = function(info) {
-// 	var id, idA, idB, idC, top, left, height;
-// 	for (var i = 0; i < info.count; i++) {
-// 		id = "CA01:F01:DH0001::" + this.getCabId(info, 1);
-// 		idA = id + "A";
-// 		idB = id + "B";
-// 		idC = id + "C";
-// 		top = this.getCabTop(info, true, 0);
-// 		left = this.getCabLeft(info, true, 0);
+DrawCA.prototype.drawP10 = function(info) {
+	var id, idA, idB, idC, top, left, height, cabNum = 1;
+	for (var i = 0; i < info.count; i++) {
+		id = this.getCabId(info, cabNum);
+		idA = id + "A";
+		idB = id + "B";
+		top = this.getCabTop(info, false, i);
+		left = this.getCabLeft(info, false, i);
 
-// 		var cabInfo = {
-// 			"id" : id,
-// 			"top" : top + "px",
-// 			"left" : left + "px",
-// 			"width" : data.widthX + "px",
-// 			"height" : data.heightX + "px"
-// 		}
-// 		$(this.dcArea).append(DrawCA.template(cabInfo));
-// 		document.getElementById(id).classList.add("cab");
-// 	}
-// };
+		if (cabNum === 21) {
+			this.createCab(id, top, left, data.widthX * this.scale, data.heightX * this.scale);	
+		} 
+		else {
+			height = (data.heightX / 2) * this.scale;
+			//A
+			this.createCab(idA, top, left, data.widthX * this.scale, height);
+			//B
+			this.createCab(idB, top + height, left, data.widthX * this.scale, height);
+		}
+		
+		cabNum++;
+	}
+
+	for (var i = 0; i < info.count; i++) {
+		id = this.getCabId(info, cabNum);
+		idA = id + "A";
+		idB = id + "B";
+		idC = id + "C";	
+		top = this.getCabTop(info, true, i);
+		left = this.getCabLeft(info, true, i);
+		height = (data.heightX / 3) * this.scale;
+
+		//A
+		this.createCab(idA, top, left, data.widthX * this.scale, height);
+		//B
+		this.createCab(idB, top + height, left, data.widthX * this.scale, height);
+		//C
+		this.createCab(idC, top + (height * 2), left, data.widthX * this.scale, height);
+
+		cabNum++	
+	}
+};
 
 DrawCA.prototype.getCabId = function(info, cabNum) {
 	if (cabNum < 10) {

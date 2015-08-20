@@ -42,18 +42,29 @@ function processData() {
 function assignToCabs(cust, noCust) {
 	for (var i = 0; i < cust.length; i++) {
 		var record = cust[i];
-		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
-			cabinets[record["name"]] = new Cabinet(record);	
-		}	
+		setCab(record);
 	}
 
 	for (var i = 0; i < noCust.length; i++) {
 		var record = noCust[i];
-		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
-			cabinets[record["name"]] = new Cabinet(record);	
-		}	
+		setCab(record);	
 	}
-
 	document.getElementById("loading").style.display = "none";
 	document.getElementById("dcArea").style.display = "block";
+}
+
+function setCab(record) {
+	if (record["pod"] === "P10") {
+		var name = record.name;
+		name = name.substring(name.indexOf("::") + 2);
+		name = name.replace(":", "-");
+
+		if (document.getElementById(name)) {
+			cabinets[record.name] = new Cabinet(record);
+		}
+	} else {
+		if (document.getElementById(record.pod + "-" + record.cab)) {
+			cabinets[record.name] = new Cabinet(record);	
+		}		
+	}
 }

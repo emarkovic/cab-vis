@@ -1,20 +1,21 @@
 "use strict";
 
 function Cabinet(data) {
-	this.name = data["name"];
 	// this.customer = data["customer"];
 	this.customer = "**********";
-	this.status = data["status"];
-	this.pod = data["pod"];
-	this.cab = data["cab"];
-
-	this.id = this.pod + "-" + this.cab;
-
-	this.cabEl = document.getElementById(this.pod + "-" + this.cab);
-	
+	this.status = data.status;
+	this.pod = data.pod;
+	this.cab = data.cab;
+	this.name = data.name;
+	if (this.pod === "P10") {
+		var nameP10 = this.name.substring(this.name.indexOf("::") + 2);
+		nameP10 = nameP10.replace(":", "-");		
+		this.id = nameP10;
+	} else {
+		this.id = this.pod + "-" + this.cab;	
+	}
+	this.cabEl = document.getElementById(this.id);
 	this.cabEl.style.backgroundColor = colors[this.status];
-	
-
 	this.hover();
 }
 
