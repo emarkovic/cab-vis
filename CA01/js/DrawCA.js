@@ -48,7 +48,7 @@ DrawCA.prototype.drawPods = function() {
 		}
 
 		if (info.pod === "P10") {
-			//this.drawP10(info);
+			// this.drawP10(info);
 		} else {
 			this.drawCabs(info);
 		}
@@ -158,81 +158,23 @@ DrawCA.prototype.createCab = function(info, cabnum, i, row2) {
 
 // DrawCA.prototype.drawP10 = function(info) {
 // 	var id, idA, idB, idC, top, left, height;
-// 	for (var i = 1; i <= 42; i++) {
-// 		id = "CA01:F01:DH0001::" + this.getCabId(info, i);
+// 	for (var i = 0; i < info.count; i++) {
+// 		id = "CA01:F01:DH0001::" + this.getCabId(info, 1);
 // 		idA = id + "A";
 // 		idB = id + "B";
 // 		idC = id + "C";
-// 		top = this.getCabTop(info, false, i);
-// 		left = this.getCabLeft(info, false, i);
+// 		top = this.getCabTop(info, true, 0);
+// 		left = this.getCabLeft(info, true, 0);
 
-// 		if (i === 21) {	//single
-// 			var cabInfo = {
-// 				"id" : id,
-// 				"top" : top + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : data.heightX + "px"
-// 			}
-// 			$(this.dcArea).append(DrawCA.template(cabInfo));
-// 			document.getElementById(id).classList.add("cab");
-// 		} else if (i < 21) { //double
-// 			height = data.heightX / 2;
-
-// 			var cabInfoA = {
-// 				"id" : idA,
-// 				"top" : top + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : height + "px"
-// 			}
-// 			$(this.dcArea).append(DrawCA.template(cabInfoA));
-// 			document.getElementById(idA).classList.add("cab");
-
-// 			var cabInfoB = {
-// 				"id" : idB,
-// 				"top" : top + height + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : height + "px"
-// 			}
-// 			$(this.dcArea).append(DrawCA.template(cabInfoB));
-// 			document.getElementById(idB).classList.add("cab");
-// 		} else { //22 - 42 -> triple!
-// 			height = data.heightX / 3;
-// 			top = this.getCabTop(info, true, i);
-// 			left = this.getCabLeft(info, true, i);
-
-// 			var cabInfoA = {
-// 				"id" : idA,
-// 				"top" : top + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : height + "px"
-// 			}
-// 			$(this.dcArea).append(DrawCA.template(cabInfoA));
-// 			document.getElementById(idA).classList.add("cab");
-
-// 			var cabInfoB = {
-// 				"id" : idB,
-// 				"top" : top + height + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : height + "px"
-// 			}
-// 			$(this.dcArea).append(DrawCA.template(cabInfoB));
-// 			document.getElementById(idB).classList.add("cab");
-
-// 			var cabInfoC = {
-// 				"id" : idC,
-// 				"top" : top + (2 * height) + "px",
-// 				"left" : left + "px",
-// 				"width" : data.widthX + "px",
-// 				"height" : height + "px"
-// 			}	
-// 			$(this.dcArea).append(DrawCA.template(cabInfoC));
-// 			document.getElementById(idC).classList.add("cab");		
+// 		var cabInfo = {
+// 			"id" : id,
+// 			"top" : top + "px",
+// 			"left" : left + "px",
+// 			"width" : data.widthX + "px",
+// 			"height" : data.heightX + "px"
 // 		}
+// 		$(this.dcArea).append(DrawCA.template(cabInfo));
+// 		document.getElementById(id).classList.add("cab");
 // 	}
 // };
 

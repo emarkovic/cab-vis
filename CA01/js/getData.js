@@ -1,24 +1,47 @@
 var cabinets = {};
+var hours = 5;
 
 function fetchNetSuiteData() {
+	//expiration in seconds
+	var expire = hours * 3600;
+	var time = localStorage.getItem("time");
+	var data = localStorage.getItem("data");
+
+	if (time && data) {
+		if (time + expire >= Math.floor(Date.now() / 1000)) {
+			data = JSON.parse(data);
+			assignToCabs(data["cust"], data["noCust"]);
+		} else {
+			getNewData();			
+		}
+	} else {
+		getNewData();		
+	}
+}
+
+function getNewData() {
 	var url = "/CA01/php/getData.php";
 	var req = new XMLHttpRequest();
 	req.open("GET", url, true);
 	req.onload = processData;
-	req.send();
+	req.send();	
 }
 
 function processData() {
-	var datas = JSON.parse(this.responseText);
-	var cust = datas["cust"];
-	var noCust = datas["noCust"];
+	localStorage.clear();
+	localStorage.setItem("time", Math.floor(Date.now() / 1000));
+	localStorage.setItem("data", this.responseText);
 	
+	var data = JSON.parse(this.responseText);
+	var cust = data["cust"];
+	var noCust = data["noCust"];
+	
+	assignToCabs(cust, noCust);
+}
 
+function assignToCabs(cust, noCust) {
 	for (var i = 0; i < cust.length; i++) {
 		var record = cust[i];
-		// if (record.pod === "P10") {
-		// 	console.log(record);
-		// }
 		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
 			cabinets[record["name"]] = new Cabinet(record);	
 		}	
@@ -26,16 +49,11 @@ function processData() {
 
 	for (var i = 0; i < noCust.length; i++) {
 		var record = noCust[i];
-		// if (record.pod === "P10") {
-		// 	console.log(record);
-		// }
 		if (document.getElementById(record["pod"] + "-" + record["cab"])) {
 			cabinets[record["name"]] = new Cabinet(record);	
 		}	
 	}
 
 	document.getElementById("loading").style.display = "none";
-	
 	document.getElementById("dcArea").style.display = "block";
-
 }
