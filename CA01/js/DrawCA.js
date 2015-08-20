@@ -95,7 +95,8 @@ DrawCA.prototype.drawCoolIsle = function(info) {
 		"top" : this.getIsleTop(info) + "px",
 		"left" : this.getIsleLeft(info) + "px",
 		"width" : this.getIsleWidth(info) + "px",
-		"height" : this.getIsleHeight(info) + "px"
+		"height" : this.getIsleHeight(info) + "px",
+		"content" : "Pod " + info.pod.substring(1)
 	}));
 	var isle = document.getElementById(id);
 	if (info.containment) {
