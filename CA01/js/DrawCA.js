@@ -14,6 +14,8 @@ function DrawCA() {
 
 //html template for cabinets + popovers.
 DrawCA.template = _.template($(document.getElementById("template-cab")).html());
+//html template for cool isles
+DrawCA.isleTemplate = _.template($(document.getElementById("template-isle")).html());
 
 /**
  * Draws the perimeter of the data center floor with Paper.js.
@@ -87,25 +89,24 @@ DrawCA.prototype.drawPods = function() {
  * @param  {object} info Pod information.
  */
 DrawCA.prototype.drawCoolIsle = function(info) {
-	var div = document.createElement("div");
-	div.style.position = "absolute";
-	div.style.top = this.getIsleTop(info) + "px";
-	div.style.left = this.getIsleLeft(info) + "px";
-	div.style.width = this.getIsleWidth(info) + "px";
-	div.style.height = this.getIsleHeight(info) + "px";
-	div.style.backgroundColor = "#19B5FE";
-
-	//draws cool isle containments with css/html borders
+	var id = "isle" + info.pod;
+	$(this.dcArea).append(DrawCA.isleTemplate({
+		"id" : id,
+		"top" : this.getIsleTop(info) + "px",
+		"left" : this.getIsleLeft(info) + "px",
+		"width" : this.getIsleWidth(info) + "px",
+		"height" : this.getIsleHeight(info) + "px"
+	}));
+	var isle = document.getElementById(id);
 	if (info.containment) {
 		if (info.dir === "x") {
-			div.style.borderLeft = "1px solid black";
-			div.style.borderRight = "1px solid black";
+			isle.style.borderLeft = "1px solid black";
+			isle.style.borderRight = "1px solid black";
 		} else {
-			div.style.borderTop = "1px solid black";
-			div.style.borderBottom = "1px solid black";			
+			isle.style.borderTop = "1px solid black";
+			isle.style.borderBottom = "1px solid black";			
 		}
 	}
-	this.dcArea.appendChild(div);
 };
 
 /**
