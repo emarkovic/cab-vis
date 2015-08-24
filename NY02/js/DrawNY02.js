@@ -177,7 +177,12 @@ DrawNY02.prototype.drawCab = function(id, top, left, width, height) {
 		"height" : height
 	}
 	$(this.dcArea).append(DrawNY02.template(dataCab));
-	document.getElementById(id).classList.add("cab");
+	var cab = document.getElementById(id);
+	cab.classList.add("cab");
+
+	$("#" + id).popover();
+	cab.dataset.content = "Information unavailable";
+	cab.dataset.originalTitle = id;
 };
 
 DrawNY02.prototype.drawCoolIsle = function(info) {
@@ -201,20 +206,47 @@ DrawNY02.prototype.drawCoolIsle = function(info) {
 		}
 	}
 };
-
 DrawNY02.prototype.getIsleTop = function(info) {
-	return (info.y + data.heightX) * this.scale + "px";
+	if (info.cabPos === "LR" || info.cabPos === "LL") { //if lower right or lower left
+		if (info.dir === "x") {
+			return (info.y - info.space) * this.scale + "px";
+		} else {	
+			return (info.y - data.heightY * (info.count - 1)) * this.scale + "px";
+		}
+	} else { 	//if upper right or upper left
+		if (info.dir === "x") {
+			return (info.y + data.heightX) * this.scale + "px";
+		} else {
+			return info.y * this.scale + "px";
+		}
+	}	
 };
 DrawNY02.prototype.getIsleLeft = function(info) {
-	if (info.cabPos === "UR") {
-		return (info.x - data.widthX * (info.count - 1)) * this.scale + "px";
-	} else {
-		return info.x * this.scale + "px";
+	if (info.cabPos === "LR" || info.cabPos === "UR") { //if lower right or upper right
+		if (info.dir === "x") {
+			return (info.x - data.widthX * (info.count - 1)) * this.scale + "px";
+		} else { 
+			return (info.x - info.space) * this.scale + "px";
+		}
+	} else { 	//if lower left or upper left
+		if (info.dir === "x") {
+			return info.x * this.scale + "px";
+		} else {
+			return (info.x + data.widthY) * this.scale + "px";
+		}
 	}
 };
 DrawNY02.prototype.getIsleWidth = function(info) {
-	return data.widthX * info.count * this.scale + "px";
+	if (info.dir === "x") {
+		return data.widthX * info.count * this.scale + "px";
+	} else {
+		return info.space * this.scale + "px";
+	}
 };
 DrawNY02.prototype.getIsleHeight = function(info) {
-	return info.space * this.scale + "px";
+	if (info.dir === "x") {
+		return info.space * this.scale + "px";
+	} else {
+		return data.heightY * info.count * this.scale + "px";
+	}
 };

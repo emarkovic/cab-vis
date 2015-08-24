@@ -243,8 +243,15 @@ DrawCA.prototype.createCab = function(id, top, left, width, height) {
 		"width" : width + "px",
 		"height" : height + "px"
 	}));
+	var cab = document.getElementById(id);
 	//adding css class
-	document.getElementById(id).classList.add("cab");
+	cab.classList.add("cab");
+
+	$("#" + id).popover();
+	//sets the popover content field
+	cab.dataset.content = "Information unavailable.";
+	//sets the popover title field
+	cab.dataset.originalTitle = id;
 };
 
 /**
@@ -446,5 +453,3 @@ DrawCA.prototype.deleteCabs = function(info) {
 		}
 	}
 };
-
-

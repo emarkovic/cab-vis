@@ -37,7 +37,7 @@ function Cabinet(data) {
 Cabinet.prototype.hover = function() {
 	//popover() function is from bootstrap js. It gives the cabinet 
 	//element popover functionality
-	$("#" + this.id).popover();
+	// $("#" + this.id).popover();
 	//sets the popover content field
 	this.cabEl.dataset.content = this.status + " " + this.customer;
 	//sets the popover title field
