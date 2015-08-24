@@ -1,4 +1,4 @@
-function DrawNY02 () {
+function DrawNJ02 () {
 	this.dcArea = document.getElementById("dcArea");
 	this.scale = settings.scale * 2;
 	
@@ -7,13 +7,13 @@ function DrawNY02 () {
 	this.drawCagePerim();
 }
 
-DrawNY02.template = _.template($(document.getElementById("template-cab")).html());
-DrawNY02.isleTemplate = _.template($(document.getElementById("template-isle")).html());
+DrawNJ02.template = _.template($(document.getElementById("template-cab")).html());
+DrawNJ02.isleTemplate = _.template($(document.getElementById("template-isle")).html());
 
 /**
  * Draws the perimeter of the data center floor with Paper.js.
  */
-DrawNY02.prototype.drawPerimeter = function() {
+DrawNJ02.prototype.drawPerimeter = function() {
 	var path = new paper.Path();
 	//gets perimeter coordinates from json.js
 	var perim = data.perimeter;
@@ -25,7 +25,7 @@ DrawNY02.prototype.drawPerimeter = function() {
 /**
  * Draws the cages on the data center floor with Paper.js.
  */
-DrawNY02.prototype.drawCagePerim = function() {
+DrawNJ02.prototype.drawCagePerim = function() {
 	for (var i = 0; i < data.cages.length; i++) {
 		var path = new paper.Path();
 		path.strokeColor = "red";
@@ -42,7 +42,7 @@ DrawNY02.prototype.drawCagePerim = function() {
  * @param {float array} data Coordinates of floor/cage perimeter.
  * @param {Paper.js object} path Helps draw the floor/cage perimeter.
  */
-DrawNY02.prototype.addToPath = function(data, path) {
+DrawNJ02.prototype.addToPath = function(data, path) {
 	//draws path from the coordinates provided
 	for (var i = 0; i < data.length; i++) {
 		var x = data[i][0] * this.scale;
@@ -55,7 +55,7 @@ DrawNY02.prototype.addToPath = function(data, path) {
 	path.add([x, y]);
 };
 
-DrawNY02.prototype.drawCages = function() {
+DrawNJ02.prototype.drawCages = function() {
 	for (var i = 0; i < data.cabs.length; i++) {
 		var info = data.cabs[i];
 		this.drawCabs(info);	
@@ -65,7 +65,7 @@ DrawNY02.prototype.drawCages = function() {
 	}
 };
 
-DrawNY02.prototype.drawCabs = function(info) {
+DrawNJ02.prototype.drawCabs = function(info) {
 	var cabNum = info.startNum;
 	for (var i = 0; i < info.count; i++) {
 		this.drawCab(this.getCabId(info, cabNum), 
@@ -76,10 +76,10 @@ DrawNY02.prototype.drawCabs = function(info) {
 		cabNum++;
 	}
 };
-DrawNY02.prototype.getCabId = function(info, cabNum) {
+DrawNJ02.prototype.getCabId = function(info, cabNum) {
 	var id = "";
 	if (data.cabs) {
-		id += info.cage + "-" + info.row;
+		id += "NJ02-F07-DH0705-" + info.cage + "-" + info.row;
 	} else if (data.pods) {
 		id += info.pod;
 	}
@@ -90,7 +90,7 @@ DrawNY02.prototype.getCabId = function(info, cabNum) {
 		return id + "-CAB" + cabNum;
 	}
 };
-DrawNY02.prototype.getCabTop = function(info, row2, i) {
+DrawNJ02.prototype.getCabTop = function(info, row2, i) {
 	var startY;
 	if (info.dir === "x") {
 		if (row2) {
@@ -122,7 +122,7 @@ DrawNY02.prototype.getCabTop = function(info, row2, i) {
 		}
 	}
 };
-DrawNY02.prototype.getCabLeft = function(info, row2, i) {
+DrawNJ02.prototype.getCabLeft = function(info, row2, i) {
 	var startX;
 	if (info.dir === "x") {
 		if (row2) {
@@ -154,21 +154,21 @@ DrawNY02.prototype.getCabLeft = function(info, row2, i) {
 		}
 	}
 };
-DrawNY02.prototype.getCabWidth = function(info) {
+DrawNJ02.prototype.getCabWidth = function(info) {
 	if (info.dir === "x") {
 		return data.widthX * this.scale + "px";
 	} else {
 		return data.widthY * this.scale + "px";
 	}
 };
-DrawNY02.prototype.getCabHeight = function(info) {
+DrawNJ02.prototype.getCabHeight = function(info) {
 	if (info.dir === "x") {
 		return data.heightX * this.scale + "px";
 	} else {
 		return data.heightY * this.scale + "px";
 	}
 };
-DrawNY02.prototype.drawCab = function(id, top, left, width, height) {
+DrawNJ02.prototype.drawCab = function(id, top, left, width, height) {
 	var dataCab = {
 		"id" : id,
 		"top" : top,
@@ -176,7 +176,7 @@ DrawNY02.prototype.drawCab = function(id, top, left, width, height) {
 		"width" : width,
 		"height" : height
 	}
-	$(this.dcArea).append(DrawNY02.template(dataCab));
+	$(this.dcArea).append(DrawNJ02.template(dataCab));
 	var cab = document.getElementById(id);
 	cab.classList.add("cab");
 
@@ -185,9 +185,9 @@ DrawNY02.prototype.drawCab = function(id, top, left, width, height) {
 	cab.dataset.originalTitle = id;
 };
 
-DrawNY02.prototype.drawCoolIsle = function(info) {
+DrawNJ02.prototype.drawCoolIsle = function(info) {
 	var id = "isle-" + info.cage + "-" + info.row;
-	$(this.dcArea).append(DrawNY02.isleTemplate({
+	$(this.dcArea).append(DrawNJ02.isleTemplate({
 		"id" : id,
 		"top" : this.getIsleTop(info),
 		"left" : this.getIsleLeft(info),
@@ -206,7 +206,7 @@ DrawNY02.prototype.drawCoolIsle = function(info) {
 		}
 	}
 };
-DrawNY02.prototype.getIsleTop = function(info) {
+DrawNJ02.prototype.getIsleTop = function(info) {
 	if (info.cabPos === "LR" || info.cabPos === "LL") { //if lower right or lower left
 		if (info.dir === "x") {
 			return (info.y - info.space) * this.scale + "px";
@@ -221,7 +221,7 @@ DrawNY02.prototype.getIsleTop = function(info) {
 		}
 	}	
 };
-DrawNY02.prototype.getIsleLeft = function(info) {
+DrawNJ02.prototype.getIsleLeft = function(info) {
 	if (info.cabPos === "LR" || info.cabPos === "UR") { //if lower right or upper right
 		if (info.dir === "x") {
 			return (info.x - data.widthX * (info.count - 1)) * this.scale + "px";
@@ -236,14 +236,14 @@ DrawNY02.prototype.getIsleLeft = function(info) {
 		}
 	}
 };
-DrawNY02.prototype.getIsleWidth = function(info) {
+DrawNJ02.prototype.getIsleWidth = function(info) {
 	if (info.dir === "x") {
 		return data.widthX * info.count * this.scale + "px";
 	} else {
 		return info.space * this.scale + "px";
 	}
 };
-DrawNY02.prototype.getIsleHeight = function(info) {
+DrawNJ02.prototype.getIsleHeight = function(info) {
 	if (info.dir === "x") {
 		return info.space * this.scale + "px";
 	} else {

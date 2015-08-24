@@ -1,11 +1,7 @@
 #directories 
-lib/
-old/
+extras/
 PA02/
 CA01/php/
-drawings/
-netsuite/
+NJ02/php/
 
 #files
-info.php
-CA01/test.html

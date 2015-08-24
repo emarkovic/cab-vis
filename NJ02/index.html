@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>NY02 - Jersey City</title>
+		<title>NJ02 - Jersey City</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
@@ -23,12 +23,15 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/paper.js"></script>
 		<script type="text/javascript" src="js/json.js"></script>
-		<script type="text/javascript" src="js/DrawNY02.js"></script>
+		<script type="text/javascript" src="js/DrawNJ02.js"></script>
+		<script type="text/javascript" src="js/getData.js"></script>
+		<script type="text/javascript" src="js/Cabinet.js"></script>
 		<script type="text/javascript">
 			window.onload = function () {
 				paper.setup(document.getElementById("canvas"));
-				new DrawNY02();
+				new DrawNJ02();
 				paper.view.draw();
+				fetchNetSuiteData();
 			}
 		</script>
 	</body>
