@@ -3,14 +3,40 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>CA01 - Santa Clara</title>	
+	<title>Data Center Visualization</title>	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<!-- Style -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+</head> 
 <body>
-	<div id="outer">
+
+<div id="initial">
+	<div class="page-header" style="text-align: center;">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<h1>Choose a data center.</h1>
+			</div>
+			<div class="col-md-4"></div>
+		</div>		
+	</div>
+	<div class="jumbotron">
+		<div class="container">
+
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+		    	<button class="btn btn-default" type="submit" id="ca01">CA01 - Santa Clara</button>
+		    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>	    	
+		</div>
+	</div>	
+</div>
+
+	<div id="outer" style="display: none;">
 		<canvas id="canvas"></canvas>
 		<div id="dcArea" style="display: none;"></div>
 		<img src="img/loading.gif" id="loading">
@@ -31,16 +57,30 @@
 	<script type="text/javascript" src="js/paper.js"></script>
 
 	<script type="text/javascript" src="js/json.js"></script>
-	<script type="text/javascript" src="js/DrawCA.js"></script>
+	<script type="text/javascript" src="js/DrawDC.js"></script>
+
 	<script type="text/javascript" src="js/getData.js"></script>
 	<script type="text/javascript" src="js/Cabinet.js"></script>
 	<script type="text/javascript">
-		window.onload = function () {			
-			paper.setup(document.getElementById("canvas"));
-			var datacenter = new DrawCA();
-			paper.view.draw();
-			fetchNetSuiteData();
+		window.onload = function () {	
+			document.getElementById("ca01").onclick = process;
+			document.getElementById("nj02").onclick = process;
 		};
+
+		function process() {
+			document.getElementById("initial").style.display = "none";
+			document.getElementById("outer").style.display = "block";
+
+			var datacenter = this.id;
+			paper.setup(document.getElementById("canvas"));
+			if (datacenter === "ca01") {
+				new DrawDC(ca01);
+			} else if (datacenter === "nj02") {
+				new DrawDC(nj02);
+			}
+			paper.view.draw();
+			fetchNetSuiteData(datacenter.toUpperCase());
+		}
 	</script>
 </body>
 </html>

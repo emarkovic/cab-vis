@@ -6,15 +6,16 @@
 var cabinets = {};
 //hours until stored data expires
 var hours = 5;
-
+var dc;
 /**
  * Gets cabinet data from NetSuite.
  */
-function fetchNetSuiteData() {
+function fetchNetSuiteData(datacenter) {
+	dc = datacenter;
 	//expiration in seconds
 	var expire = hours * 3600;
-	var time = localStorage.getItem("ca01-time");
-	var data = localStorage.getItem("ca01-data");
+	var time = localStorage.getItem(dc + "-time");
+	var data = localStorage.getItem(dc + "-data");
 
 	if (time && data) { //if time and data exist in local storage
 		if (time + expire >= Math.floor(Date.now() / 1000)) { 	//has the data expired?
@@ -34,7 +35,7 @@ function fetchNetSuiteData() {
  * Sends a request to getData.php to get NetSuite data.
  */
 function getNewData() {
-	var url = "/CA01/php/getData.php";
+	var url = "/php/getData.php?dc=" + dc;
 	var req = new XMLHttpRequest();
 	req.open("GET", url, true);
 	req.onload = saveData;
@@ -45,12 +46,13 @@ function getNewData() {
  * Saves the data to local storage.
  */
 function saveData() {
-	localStorage.clear();
+	localStorage.removeItem(dc + "-time");
+	localStorage.removeItem(dc + "-data");
 								  //seconds since unix epoch
-	localStorage.setItem("ca01-time", Math.floor(Date.now() / 1000));
-	localStorage.setItem("ca01-data", this.responseText);
+	localStorage.setItem(dc + "-time", Math.floor(Date.now() / 1000));
+	localStorage.setItem(dc + "-data", JSON.parse(this.responseText));
 	
-	var data = JSON.parse(this.responseText);
+	var data = JSON.parse(localStorage.getItem(dc + "-data"));
 	var cust = data["cust"];
 	var noCust = data["noCust"];
 	
@@ -86,22 +88,28 @@ function assignToCabs(cust, noCust) {
 function setCab(record) {
 	//pod 10 is different. It requires more manipulation to match a 
 	//NetSuite record to the html element
-	if (record["pod"] === "P10") {
-		//name is picked up
-		var name = record.name; 	
-		//isolating pod and cab from the rest of the name
-		name = name.substring(name.indexOf("::") + 2); 
-		//replacing colon with dash
-		name = name.replace(":", "-");
+	var name = record.name;
+	if (dc === "CA01") {
+		if (record["pod"] === "P10") {	
+			//isolating pod and cab from the rest of the name
+			name = name.substring(name.indexOf("::") + 2); 
+			//replacing colon with dash
+			name = name.replace(":", "-");
 
-		if (document.getElementById(name)) { 	//if this element exists, 
-												//create the Cabinet object.
-			cabinets[record.name] = new Cabinet(record);
+			if (document.getElementById(name)) { 	//if this element exists, 
+													//create the Cabinet object.
+				cabinets[record.name] = new Cabinet(record, dc);
+			}
+		} else {
+			if (document.getElementById(record.pod + "-" + record.cab)) { //if this element exists, 
+																		  //create the Cabinet object.
+				cabinets[name] = new Cabinet(record, dc);	
+			}		
 		}
-	} else {
-		if (document.getElementById(record.pod + "-" + record.cab)) { //if this element exists, 
-																	  //create the Cabinet object.
-			cabinets[record.name] = new Cabinet(record);	
-		}		
+	} else if (dc === "NJ02") {
+		name = name.replace(/:/g,'-');
+		if (document.getElementById(name)) {
+			cabinets[name] = new Cabinet(record, dc);
+		}
 	}
 }
