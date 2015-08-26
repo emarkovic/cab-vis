@@ -989,3 +989,121 @@ var nj01 = {
 		}								
 	]
 }
+
+/**
+ * Data for OH01 - Cleveland
+ */
+var oh01 = {
+	"perimeter" : [
+		[0.5, 0],
+		[39, 0],
+		[39, 3.25],
+		[37, 4.5],
+		[39, 6.25],
+		[39, 17.25],
+		[0.5, 17.25]
+	],
+
+	"cages" : [],
+
+	"widthX" : 1,
+	"heightX" : 2,
+
+	"widthY" : 2, 
+	"heightY" : 1,
+
+	"pods" : [
+		{
+			"pod" : "P01",
+			"dir" : "y",
+			"x" : 2,
+			"y" : 10.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"count" : 4,
+			"coolIsle" : false
+		},
+		{
+			"pod" : "P02",
+			"dir" : "y",
+			"x" : 6,
+			"y" : 0.25,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"count" : 7,
+			"coolIsle" : false
+		},
+		{
+			"pod" : "P03",
+			"dir" : "y",
+			"x" : 6,
+			"y" : 10.25,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"count" : 4,
+			"coolIsle" : false
+		},	
+		{
+			"pod" : "P04",
+			"dir" : "y",
+			"x" : 10,
+			"y" : 0.25,
+			"cabPos" : "UL",
+			"rows" : 2,
+			"count" : 14,
+			"coolIsle" : true,
+			"space" : 2,
+			"containment" : true
+		},
+		{
+			"pod" : "P05",
+			"dir" : "y",
+			"x" : 17,
+			"y" : 0.25,
+			"cabPos" : "UL",
+			"rows" : 2,
+			"count" : 14,
+			"missing" : [8, 9],
+			"coolIsle" : true,
+			"space" : 2,
+			"containment" : true
+		},		
+		{
+			"pod" : "P06",
+			"dir" : "y",
+			"x" : 24,
+			"y" : 0.25,
+			"cabPos" : "UL",
+			"rows" : 2,
+			"count" : 14,
+			"missing" : [20, 21],
+			"coolIsle" : true,
+			"space" : 2,
+			"containment" : true
+		},		
+		{
+			"pod" : "P07",
+			"dir" : "y",
+			"x" : 31,
+			"y" : 0.25,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"count" : 9,
+			"coolIsle" : true,
+			"space" : 1,
+			"containment" : true
+		},
+		{
+			"pod" : "P08",
+			"dir" : "y",
+			"x" : 31,
+			"y" : 9.25,
+			"cabPos" : "UL",
+			"rows" : 2,
+			"count" : 5,
+			"coolIsle" : true,
+			"space" : 2,
+			"containment" : true
+		}
+	]
+}

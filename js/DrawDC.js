@@ -11,7 +11,7 @@ function DrawDC(datacenter) {
 	}
 	this.drawCagePerim();
 
-	if (datacenter === nj01) {
+	if (datacenter === nj01 || datacenter === oh01) {
 		this.dcArea.style.display="block";
 		document.getElementById("loading").style.display = "none";
 	}
