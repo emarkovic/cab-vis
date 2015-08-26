@@ -4,14 +4,14 @@ function DrawDC(datacenter) {
 	this.data = datacenter;
 
 	this.drawPerimeter();
-	if (this.data.pods) { 	//ca01, nj01`
+	if (this.data.pods) { 	//ca01, nj01, oh01
 		this.drawPods();
-	} else if (this.data.cabs) { 	//nj02
+	} else if (this.data.cabs) { 	//nj02, ny03
 		this.drawCages();
 	}
 	this.drawCagePerim();
 
-	if (datacenter === nj01 || datacenter === oh01) {
+	if (datacenter === nj01 || datacenter === oh01 || datacenter === ny03) {
 		this.dcArea.style.display="block";
 		document.getElementById("loading").style.display = "none";
 	}
@@ -23,22 +23,26 @@ DrawDC.template = _.template($(document.getElementById("template-cab")).html());
 DrawDC.isleTemplate = _.template($(document.getElementById("template-isle")).html());
 
 DrawDC.prototype.drawPerimeter = function() {
-	var path = new paper.Path();
-	//gets perimeter coordinates from json.js
-	var perim = this.data.perimeter;
-	path.strokeColor = "black";
-	//draw
-	this.addToPath(perim, path);
+	for (var i = 0; i < this.data.perimeter.length; i++) {
+		var path = new paper.Path();
+		//gets perimeter coordinates from json.js
+		var perim = this.data.perimeter[i];
+		path.strokeColor = "black";
+		//draw
+		this.addToPath(perim, path);
+	}
 };
 DrawDC.prototype.drawCagePerim = function() {
-	for (var i = 0; i < this.data.cages.length; i++) {
-		var path = new paper.Path();
-		path.strokeColor = "red";
-		//dashed line
-		path.dashArray = [8, 6];
-		var cage = this.data.cages[i];
+	if (this.data.cages) { 	//if the dc has any cages
+		for (var i = 0; i < this.data.cages.length; i++) {
+			var path = new paper.Path();
+			path.strokeColor = "red";
+			//dashed line
+			path.dashArray = [8, 6];
+			var cage = this.data.cages[i];
 
-		this.addToPath(cage, path);
+			this.addToPath(cage, path);
+		}
 	}
 };
 DrawDC.prototype.addToPath = function(cage, path) {
@@ -135,17 +139,14 @@ DrawDC.prototype.drawCages = function() {
 		if (info.coolIsle) {
 			this.drawCoolIsle(info);
 		}
+		if (info.missing) { //deletes the specified cabs
+			this.deleteCabs(info);	
+		}
 	}
 };
 
 DrawDC.prototype.drawCabs = function(info) {
-	var cabNum;
-	if (this.data.pods) { 	//ca01
-		cabNum = 1;
-	} else if (this.data.cabs) { 	//nj02
-		cabNum = info.startNum;
-	}
-
+	var cabNum = info.startNum;
 	for (var i = 0; i < info.count; i++) {
 		this.createCab(
 			this.getCabId(info, cabNum),
@@ -171,10 +172,12 @@ DrawDC.prototype.drawCabs = function(info) {
 };
 DrawDC.prototype.getCabId = function(info, cabNum) {
 	var id = "";
-	if (this.data.pods) { 	//ca01
+	if (this.data.pods) { 	//ca01, nj01, oh01
 		id += info.pod;
-	} else if (this.data.cabs) { 	//nj02
+	} else if (this.data === nj02) { 	//nj02
 		id += "NJ02-F07-DH0705-" + info.cage + "-" + info.row;
+	} else if (this.data.cabs) { 	//ny03
+		id += info.cage + "-" + info.row;
 	}
 
 	if (cabNum < 10) { 	
@@ -284,24 +287,32 @@ DrawDC.prototype.deleteCabs = function(info) {
 	var del = info.missing;
 	for (var i = 0; i < del.length; i++) {
 		var cab = del[i];
-		if (cab < 10) {
-			this.dcArea.removeChild(document.getElementById(info.pod + "-CAB0" + cab));
-		} else {
-			this.dcArea.removeChild(document.getElementById(info.pod + "-CAB" + cab));
+		var id = "";
+		if (this.data.pods) { 	//ca01, nj01, oh01
+			id += info.pod;
+		} else if (this.data.cabs) { 	//ny03, nj02
+			id += info.cage + "-" + info.row;
 		}
+		if (cab < 10) {
+			id += "-CAB0" + cab;
+		} else {
+			id += "-CAB" + cab;
+		}
+
+		this.dcArea.removeChild(document.getElementById(id));
 	}
 };
 
 DrawDC.prototype.drawCoolIsle = function(info) {
 	var id, content;
-	if (this.data.pods) { 	//ca01, nj01
+	if (this.data.pods) { 	//ca01, nj01, oh01
 		id = "isle" + info.pod;
-		if (this.data === ca01) {
+		if (this.data === ca01) { 	//ca01
 			content = "Pod " + info.pod.substring(1);	
-		} else {
+		} else {	//nj01, oh01
 			content = "";		
 		}
-	} else if (this.data.cabs) { 	//nj02
+	} else if (this.data.cabs) { 	//ny03, nj02
 		id = "isle-" + info.cage + "-" + info.row;
 		content = "";
 	}

@@ -25,11 +25,14 @@ var settings = {
  */
 var ca01 = {
 	"perimeter" : [
-		[0, 0],
-		[94, 0],
-		[94, 65],
-		[0, 65]
+		[
+			[0, 0],
+			[94, 0],
+			[94, 65],
+			[0, 65]
+		]
 	],
+
 	"cages" : [
 		[
 			[20, 24],
@@ -69,7 +72,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P02",
@@ -81,7 +85,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P03",
@@ -93,7 +98,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P04",
@@ -105,7 +111,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P05",
@@ -117,7 +124,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P06",
@@ -129,7 +137,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P07",
@@ -141,7 +150,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P08",
@@ -153,7 +163,8 @@ var ca01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P09",
@@ -165,7 +176,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"_war" : "strange",
@@ -179,7 +191,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P11",
@@ -191,7 +204,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P12",
@@ -203,7 +217,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P13",
@@ -215,7 +230,8 @@ var ca01 = {
 			"count" : 20,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P14",
@@ -227,7 +243,8 @@ var ca01 = {
 			"count" : 20,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P15",
@@ -239,7 +256,8 @@ var ca01 = {
 			"count" : 20,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P16",
@@ -251,7 +269,8 @@ var ca01 = {
 			"count" : 19,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P17",
@@ -264,7 +283,8 @@ var ca01 = {
 			"coolIsle" : true,
 			"side" : "L",
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P18",
@@ -276,7 +296,8 @@ var ca01 = {
 			"count" : 22,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P19",
@@ -288,7 +309,8 @@ var ca01 = {
 			"count" : 22,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P20",
@@ -301,7 +323,8 @@ var ca01 = {
 			"missing" : [4, 5, 16, 17],
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P21",
@@ -313,7 +336,8 @@ var ca01 = {
 			"count" : 22,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P22",
@@ -325,7 +349,8 @@ var ca01 = {
 			"count" : 22,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P23",
@@ -339,7 +364,8 @@ var ca01 = {
 			"coolIsle" : true,
 			"side" : "L",
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P24",
@@ -351,7 +377,8 @@ var ca01 = {
 			"count" : 23,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P25",
@@ -363,7 +390,8 @@ var ca01 = {
 			"count" : 23,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P26",
@@ -375,7 +403,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P27",
@@ -387,7 +416,8 @@ var ca01 = {
 			"count" : 21,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P28",
@@ -400,7 +430,8 @@ var ca01 = {
 			"coolIsle" : true,
 			"side" : "R",
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		}
 	]
 };
@@ -410,14 +441,16 @@ var ca01 = {
  */
 var nj02 = {
 	"perimeter" : [
-		[0, 22.5],
-		[3.5, 22.5],
-		[3.5, 12.75],
-		[59.75, 12.75],
-		[59.75, 0],
-		[94, 0],
-		[94, 26],
-		[0, 26]
+		[
+			[0, 22.5],
+			[3.5, 22.5],
+			[3.5, 12.75],
+			[59.75, 12.75],
+			[59.75, 0],
+			[94, 0],
+			[94, 26],
+			[0, 26]
+		]
 	],
 
 	"cages" : [	
@@ -678,16 +711,18 @@ var nj02 = {
  */
 var nj01 = {
 	"perimeter" : [
-		[5, 0],
-		[99, 0],
-		[99, 52],
-		[32, 52],
-		[32, 28],
-		[0.5, 28],
-		[0.5, 23],
-		[25, 23],
-		[25, 3],
-		[5, 3]
+		[
+			[5, 0],
+			[99, 0],
+			[99, 52],
+			[32, 52],
+			[32, 28],
+			[0.5, 28],
+			[0.5, 23],
+			[25, 23],
+			[25, 3],
+			[5, 3]
+		]
 	],
 
 	"cages" : [],
@@ -709,7 +744,8 @@ var nj01 = {
 			"count" : 8,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P01",
@@ -721,7 +757,8 @@ var nj01 = {
 			"count" : 5,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P02",
@@ -733,7 +770,8 @@ var nj01 = {
 			"count" : 4,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},			
 		{
 			"pod" : "P03",
@@ -745,7 +783,8 @@ var nj01 = {
 			"count" : 15,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P04",
@@ -757,7 +796,8 @@ var nj01 = {
 			"count" : 12,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},			
 		{
 			"pod" : "P05",
@@ -769,7 +809,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P06",
@@ -781,7 +822,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P07",
@@ -793,7 +835,8 @@ var nj01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},			
 		{
 			"pod" : "P08",
@@ -805,7 +848,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P09",
@@ -817,7 +861,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P10",
@@ -829,7 +874,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P11",
@@ -841,7 +887,8 @@ var nj01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P12",
@@ -853,7 +900,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P13",
@@ -865,7 +913,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P14",
@@ -877,7 +926,8 @@ var nj01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P15",
@@ -889,7 +939,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P16",
@@ -901,7 +952,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P17",
@@ -913,7 +965,8 @@ var nj01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P18",
@@ -925,7 +978,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P19",
@@ -937,7 +991,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P20",
@@ -949,7 +1004,8 @@ var nj01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P21",
@@ -961,7 +1017,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P22",
@@ -973,7 +1030,8 @@ var nj01 = {
 			"count" : 10,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P23",
@@ -985,7 +1043,8 @@ var nj01 = {
 			"count" : 16,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		}								
 	]
 }
@@ -995,13 +1054,15 @@ var nj01 = {
  */
 var oh01 = {
 	"perimeter" : [
-		[0.5, 0],
-		[39, 0],
-		[39, 3.25],
-		[37, 4.5],
-		[39, 6.25],
-		[39, 17.25],
-		[0.5, 17.25]
+		[
+			[0.5, 0],
+			[39, 0],
+			[39, 3.25],
+			[37, 4.5],
+			[39, 6.25],
+			[39, 17.25],
+			[0.5, 17.25]
+		]
 	],
 
 	"cages" : [],
@@ -1021,7 +1082,8 @@ var oh01 = {
 			"cabPos" : "UL",
 			"rows" : 1,
 			"count" : 4,
-			"coolIsle" : false
+			"coolIsle" : false,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P02",
@@ -1031,7 +1093,8 @@ var oh01 = {
 			"cabPos" : "UL",
 			"rows" : 1,
 			"count" : 7,
-			"coolIsle" : false
+			"coolIsle" : false,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P03",
@@ -1041,7 +1104,8 @@ var oh01 = {
 			"cabPos" : "UL",
 			"rows" : 1,
 			"count" : 4,
-			"coolIsle" : false
+			"coolIsle" : false,
+			"startNum" : 1
 		},	
 		{
 			"pod" : "P04",
@@ -1053,7 +1117,8 @@ var oh01 = {
 			"count" : 14,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P05",
@@ -1066,7 +1131,8 @@ var oh01 = {
 			"missing" : [8, 9],
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P06",
@@ -1079,7 +1145,8 @@ var oh01 = {
 			"missing" : [20, 21],
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},		
 		{
 			"pod" : "P07",
@@ -1091,7 +1158,8 @@ var oh01 = {
 			"count" : 9,
 			"coolIsle" : true,
 			"space" : 1,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		},
 		{
 			"pod" : "P08",
@@ -1103,7 +1171,338 @@ var oh01 = {
 			"count" : 5,
 			"coolIsle" : true,
 			"space" : 2,
-			"containment" : true
+			"containment" : true,
+			"startNum" : 1
 		}
 	]
+}
+
+/**
+ * Data for NY03 - Brooklyn
+ */
+
+var ny03 = {
+	"perimeter" : [
+		[ 	//perim 1
+			[2.5, 43.75], //1
+			[16, 43.75], //2
+			[16, 37.5], //3
+			[25, 37.5], //4
+			[25, 41], //5
+			[30, 41], //6
+			[30, 46.5], //7
+			[32.5, 46.5], //8
+			[32.5, 48.5], //9
+			[50, 48.5], //10
+			[50, 63.5], //11
+			[0, 63.5] //12
+		],
+		[ 	//perim 2
+			[60, 0], //1
+			[96, 0], //2
+			[96, 20], //3
+			[86, 20], //4
+			[86, 24], //5
+			[82, 24], //6
+			[82, 32], //7
+			[67, 32], //8
+			[67, 52], //9
+			[63, 52], //10
+			[63, 64], //11
+			[53.5, 64] //12
+		]
+	],
+
+	"cages" : [
+		[ 	//c02
+			[59, 13.25],
+			[64, 13.25],
+			[64, 20],
+			[59, 20]
+		],
+		[ 	//c03
+			[60, 0.25],
+			[76.75, 0.25],
+			[76.75, 11],
+			[63, 11],
+			[63, 12.75],
+			[60, 12.75]
+		],
+		[ 	//c04
+			[77.25, 0.25],
+			[87.25, 0.25],
+			[87.25, 13],
+			[77.25, 13]
+		],
+		[ 	//c05
+			[87.75, 0.25],
+			[95.75, 0.25],
+			[95.75, 9],
+			[87.75, 9]
+		],
+		[ 	//c07
+			[81.75, 24],
+			[81.75, 31.75],
+			[72, 31.75],
+			[72, 24]
+		]
+	],
+
+	"widthX" : 1,
+	"heightX" : 1.5,
+
+	"widthY" : 1.5, 
+	"heightY" : 1,
+
+	"cabs" : [
+		{
+			"cage" : "C19",
+			"row" : "R00",
+			"dir" : "y",
+			"x" : 43,
+			"y" : 54.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 5,
+			"coolIsle" : false
+		},
+		{
+			"cage" : "C19",
+			"row" : "R00",
+			"dir" : "y",
+			"x" : 40,
+			"y" : 52.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 6,
+			"count" : 3,
+			"coolIsle" : false
+		},
+		{
+			"cage" : "C19",
+			"row" : "R01",
+			"dir" : "y",
+			"x" : 37,
+			"y" : 53.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 1, 
+			"count" : 7,
+			"coolIsle" : false
+		},	
+		{
+			"cage" : "C19",
+			"row" : "R02",
+			"dir" : "y",
+			"x" : 35,
+			"y" : 59.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 5,
+			"coolIsle" : false
+		},
+		{
+			"cage" : "C19",
+			"row" : "R03",
+			"dir" : "y",
+			"x" : 32,
+			"y" : 58.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 0,
+			"count" : 6,
+			"coolIsle" : false
+		},	
+		{
+			"cage" : "C19",
+			"row" : "R04",
+			"dir" : "y",
+			"x" : 24.5,
+			"y" : 59.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 0,
+			"count" : 6,
+			"coolIsle" : false
+		},	
+		{
+			"cage" : "C19",
+			"row" : "R05",
+			"dir" : "y",
+			"x" : 18.5,
+			"y" : 43.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 3,
+			"coolIsle" : false
+		},		
+		{
+			"cage" : "C19",
+			"row" : "R06",
+			"dir" : "y",
+			"x" : 21.5,
+			"y" : 43.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 0,
+			"count" : 5,
+			"coolIsle" : false
+		},				
+		{
+			"cage" : "C19",
+			"row" : "R07",
+			"dir" : "y",
+			"x" : 24.5,
+			"y" : 44.5,
+			"cabPos" : "UL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 4,
+			"coolIsle" : false
+		},	
+		{
+			"cage" : "C19",
+			"row" : "R08",
+			"dir" : "y",
+			"x" : 21.5,
+			"y" : 58.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 2,
+			"count" : 6,
+			"coolIsle" : false
+		},	
+		{
+			"cage" : "C19",
+			"row" : "R09",
+			"dir" : "y",
+			"x" : 18.5,
+			"y" : 58.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 3,
+			"count" : 5,
+			"coolIsle" : false
+		},
+		{
+			"cage" : "C03",
+			"row" : "R01",
+			"dir" : "x",
+			"x" : 63,
+			"y" : 5.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 10,
+			"coolIsle" : false,
+			"missing" : [6, 7, 8]
+		},
+		{
+			"cage" : "C03",
+			"row" : "R02",
+			"dir" : "x",
+			"x" : 63,
+			"y" : 2,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 10,
+			"coolIsle" : false,
+			"missing" : [7]
+		},
+		{
+			"cage" : "C04",
+			"row" : "R01",
+			"dir" : "x",
+			"x" : 78,
+			"y" : 7.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 5,
+			"coolIsle" : true,
+			"space" : 2,
+			"containment" : true
+		},	
+		{
+			"cage" : "C04",
+			"row" : "R02",
+			"dir" : "x",
+			"x" : 78,
+			"y" : 4,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 5,
+			"coolIsle" : false
+		},			
+		{
+			"cage" : "C07",
+			"row" : "R01",
+			"dir" : "x",
+			"x" : 73,
+			"y" : 27,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 6,
+			"coolIsle" : true,
+			"space" : 1,
+			"containment" : true,
+			"missing" : [5]
+		},	
+		{
+			"cage" : "C01",
+			"row" : "R03",
+			"dir" : "x",
+			"x" : 60,
+			"y" : 50.5,
+			"cabPos" : "LR",
+			"rows" : 1,
+			"startNum" : 1,
+			"count" : 1,
+			"coolIsle" : false
+		},			
+		{
+			"cage" : "C01",
+			"row" : "R03",
+			"dir" : "x",
+			"x" : 58,
+			"y" : 50.5,
+			"cabPos" : "LR",
+			"rows" : 1,
+			"startNum" : 2,
+			"count" : 2,
+			"coolIsle" : false
+		},
+		{
+			"cage" : "C01",
+			"row" : "R04",
+			"dir" : "x",
+			"x" : 59,
+			"y" : 53.5,
+			"cabPos" : "LR",
+			"rows" : 1,
+			"startNum" : 2,
+			"count" : 2,
+			"coolIsle" : false
+		},		
+		{
+			"cage" : "C01",
+			"row" : "R05",
+			"dir" : "x",
+			"x" : 59,
+			"y" : 56.5,
+			"cabPos" : "UR",
+			"rows" : 1,
+			"startNum" : 2,
+			"count" : 3,
+			"coolIsle" : true,
+			"space" : 1,
+			"containment" : true
+		}									
+	]	
 }

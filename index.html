@@ -28,8 +28,9 @@
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
 		    	<button class="btn btn-default" type="submit" id="ca01">CA01 - Santa Clara</button>
-		    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
 		    	<button class="btn btn-default" type="submit" id="nj01">NJ01 - Secaucus</button>
+		    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
+		    	<button class="btn btn-default" type="submit" id="ny03">NY03 - Brooklyn</button>
 		    	<button class="btn btn-default" type="submit" id="oh01">OH01 - Cleveland</button>
 			</div>
 			<div class="col-md-4"></div>
@@ -68,6 +69,7 @@
 			document.getElementById("ca01").onclick = process;
 			document.getElementById("nj02").onclick = process;
 			document.getElementById("nj01").onclick = process;
+			document.getElementById("ny03").onclick = process;
 			document.getElementById("oh01").onclick = process;
 		};
 
@@ -91,8 +93,10 @@
 			} else if (datacenter === "oh01") {
 				new DrawDC(oh01);
 				paper.view.draw();
+			} else if (datacenter === "ny03") {
+				new DrawDC(ny03);
+				paper.view.draw();				
 			}
-
 		}
 	</script>
 </body>
