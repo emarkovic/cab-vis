@@ -29,6 +29,7 @@
 			<div class="col-md-4">
 		    	<button class="btn btn-default" type="submit" id="ca01">CA01 - Santa Clara</button>
 		    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
+		    	<button class="btn btn-default" type="submit" id="nj01">NJ01 - Secaucus</button>
 			</div>
 			<div class="col-md-4"></div>
 		</div>	    	
@@ -65,6 +66,7 @@
 		window.onload = function () {	
 			document.getElementById("ca01").onclick = process;
 			document.getElementById("nj02").onclick = process;
+			document.getElementById("nj01").onclick = process;
 		};
 
 		function process() {
@@ -75,11 +77,17 @@
 			paper.setup(document.getElementById("canvas"));
 			if (datacenter === "ca01") {
 				new DrawDC(ca01);
+				paper.view.draw();
+				fetchNetSuiteData(datacenter.toUpperCase());				
 			} else if (datacenter === "nj02") {
 				new DrawDC(nj02);
+				paper.view.draw();
+				fetchNetSuiteData(datacenter.toUpperCase());				
+			} else if (datacenter === "nj01") {
+				new DrawDC(nj01);
+				paper.view.draw();
 			}
-			paper.view.draw();
-			fetchNetSuiteData(datacenter.toUpperCase());
+
 		}
 	</script>
 </body>

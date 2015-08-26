@@ -4,12 +4,17 @@ function DrawDC(datacenter) {
 	this.data = datacenter;
 
 	this.drawPerimeter();
-	if (this.data.pods) { 	//ca01
+	if (this.data.pods) { 	//ca01, nj01`
 		this.drawPods();
 	} else if (this.data.cabs) { 	//nj02
 		this.drawCages();
 	}
 	this.drawCagePerim();
+
+	if (datacenter === nj01) {
+		this.dcArea.style.display="block";
+		document.getElementById("loading").style.display = "none";
+	}
 }
 
 //html template for cabinets + popovers.
@@ -51,14 +56,17 @@ DrawDC.prototype.addToPath = function(cage, path) {
 
 //if CA01
 DrawDC.prototype.drawPods = function() {
+	
 	for (var i = 0; i < this.data.pods.length; i++) {
 		var info = this.data.pods[i];
 		if (info.coolIsle) { 	//if pod has a cool isle
 			this.drawCoolIsle(info);
 		}
-
-		if (info.pod === "P10") { 	//drawing the special pod 10
-			this.drawP10(info);
+		if (this.data === ca01) {
+			if (info.pod === "P10") { 	//drawing the special pod 10
+				this.drawP10(info);
+			}
+			this.drawCabs(info);
 		} else {
 			this.drawCabs(info);
 		}
@@ -286,13 +294,18 @@ DrawDC.prototype.deleteCabs = function(info) {
 
 DrawDC.prototype.drawCoolIsle = function(info) {
 	var id, content;
-	if (this.data.pods) { 	//ca01
+	if (this.data.pods) { 	//ca01, nj01
 		id = "isle" + info.pod;
-		content = "Pod " + info.pod.substring(1);
+		if (this.data === ca01) {
+			content = "Pod " + info.pod.substring(1);	
+		} else {
+			content = "";		
+		}
 	} else if (this.data.cabs) { 	//nj02
 		id = "isle-" + info.cage + "-" + info.row;
 		content = "";
 	}
+	
 	$(this.dcArea).append(DrawDC.isleTemplate({
 		"id" : id,
 		"top" : this.getIsleTop(info),
