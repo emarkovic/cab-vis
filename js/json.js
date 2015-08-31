@@ -1503,6 +1503,20 @@ var ny03 = {
 			"coolIsle" : true,
 			"space" : 1,
 			"containment" : true
+		},
+		{
+			"cage" : "C05",
+			"row" : "R01",
+			"dir" : "x",
+			"x" : 93.75,
+			"y" : 5.5,
+			"cabPos" : "LL",
+			"rows" : 1,
+			"startNum" : 4,
+			"count" : 2,
+			"coolIsle" : true,
+			"space" : 1,
+			"containment" : true
 		}									
 	]	
 }

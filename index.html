@@ -11,33 +11,39 @@
 </head> 
 <body>
 
-<div id="initial">
-	<div class="page-header" style="text-align: center;">
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<h1>Choose a data center.</h1>
-			</div>
-			<div class="col-md-4"></div>
-		</div>		
-	</div>
-	<div class="jumbotron">
-		<div class="container">
+	<button class="btn btn-primary" id="back" style="display: none;">Back to menu</button>
 
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-		    	<button class="btn btn-default" type="submit" id="ca01">CA01 - Santa Clara</button>
-		    	<button class="btn btn-default" type="submit" id="nj01">NJ01 - Secaucus</button>
-		    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
-		    	<button class="btn btn-default" type="submit" id="ny03">NY03 - Brooklyn</button>
-		    	<button class="btn btn-default" type="submit" id="oh01">OH01 - Cleveland</button>
-			</div>
-			<div class="col-md-4"></div>
-		</div>	    	
+	<div class="page-header" id="headerArea" style="display: none;">
+		<h1 id="headerText"></h1>
+	</div>
+
+	<div id="initial">
+		<div class="page-header" style="text-align: center;">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h1>Choose a data center.</h1>
+				</div>
+				<div class="col-md-4"></div>
+			</div>		
 		</div>
-	</div>	
-</div>
+		<div class="jumbotron">
+			<div class="container">
+
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+			    	<button class="btn btn-default" type="submit" id="ca01">CA01 - Santa Clara</button>
+			    	<button class="btn btn-default" type="submit" id="nj01">NJ01 - Secaucus</button>
+			    	<button class="btn btn-default" type="submit" id="nj02">NJ02 - Jersey City</button>
+			    	<button class="btn btn-default" type="submit" id="ny03">NY03 - Brooklyn</button>
+			    	<button class="btn btn-default" type="submit" id="oh01">OH01 - Cleveland</button>
+				</div>
+				<div class="col-md-4"></div>
+			</div>	    	
+			</div>
+		</div>	
+	</div>
 
 	<div id="outer" style="display: none;">
 		<canvas id="canvas"></canvas>
@@ -66,6 +72,8 @@
 	<script type="text/javascript" src="js/Cabinet.js"></script>
 	<script type="text/javascript">
 		window.onload = function () {	
+			document.getElementById("back").onclick = back;
+
 			document.getElementById("ca01").onclick = process;
 			document.getElementById("nj02").onclick = process;
 			document.getElementById("nj01").onclick = process;
@@ -74,29 +82,50 @@
 		};
 
 		function process() {
+			var hText = document.getElementById("headerText");
+
+			document.getElementById("headerArea").style.display = "block";
+			document.getElementById("back").style.display = "block"
 			document.getElementById("initial").style.display = "none";
 			document.getElementById("outer").style.display = "block";
+
 
 			var datacenter = this.id;
 			paper.setup(document.getElementById("canvas"));
 			if (datacenter === "ca01") {
+				hText.innerHTML = "CA01 - Santa Clara";
 				new DrawDC(ca01);
 				paper.view.draw();
 				fetchNetSuiteData(datacenter.toUpperCase());				
 			} else if (datacenter === "nj02") {
+				hText.innerHTML = "NJ02 - Jersey City";
 				new DrawDC(nj02);
 				paper.view.draw();
 				fetchNetSuiteData(datacenter.toUpperCase());				
 			} else if (datacenter === "nj01") {
+				hText.innerHTML = "NJ01 - Secaucus";
 				new DrawDC(nj01);
 				paper.view.draw();
 			} else if (datacenter === "oh01") {
+				hText.innerHTML = "OH01 - Cleveland";
 				new DrawDC(oh01);
 				paper.view.draw();
 			} else if (datacenter === "ny03") {
+				hText.innerHTML = "NY03 - Brooklyn";
 				new DrawDC(ny03);
 				paper.view.draw();				
 			}
+		}
+
+		function back() {
+			cabinets = {};
+			document.getElementById("dcArea").innerHTML = "";
+
+			document.getElementById("headerText").innerHTML = "";
+			document.getElementById("headerArea").style.display = "none";
+			document.getElementById("back").style.display = "none"
+			document.getElementById("initial").style.display = "block";
+			document.getElementById("outer").style.display = "none";
 		}
 	</script>
 </body>
